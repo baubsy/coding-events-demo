@@ -1,5 +1,8 @@
 package org.launchcode.codingevents.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -10,14 +13,46 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
+    private EventType type;
+    @NotBlank
+    @Size(min = 3, max = 50, message="at least 3, no more than 50")
     private String name;
-    private String description;
 
-    public Event(String name, String description) {
-        this.name = name;
-        this.description = description;
+    @Size(max = 500, message = "max size 500")
+    private String description;
+    @NotBlank
+    @Email(message = "Invalid Email")
+    private String contactEmail;
+
+    public Event(){
         this.id = nextId;
         nextId++;
+    };
+
+    public Event(String name, String description, String contactEmail, EventType type) {
+        this();
+        this.name = name;
+        this.description = description;
+
+        this.contactEmail = contactEmail;
+        this.type = type;
+
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
     public String getName() {
