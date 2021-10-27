@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<header th:replace="fragments :: header"></header>
+<table>
+    <tr><th>ID</th><th>Event Category</th></tr>
+    <tr th:each="category : ${categories}"><td th:text="${category.id}"></td><td th:text="${category.name}"></td></tr>
+</table>
+</body>
+</html>
